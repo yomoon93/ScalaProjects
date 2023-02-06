@@ -1,4 +1,5 @@
 object ObjectOrientation extends App {
+  //java eequivalent:public static void main(String[] args)
   class Animal{
     def eat() = println("I'm eating")
     val age: Int = 0
@@ -22,6 +23,7 @@ object ObjectOrientation extends App {
     val hasLegs = true // by default public
     def walk(): Unit
   }
+  //interface  ultimate abstract type
   trait Carnivore{
     def eat (animal:Animal): Unit
   }
@@ -46,12 +48,12 @@ object ObjectOrientation extends App {
   val anotherBasicMath = 1.+(2) // equivalent
 
   // anonymous classes
-//  val dinosaur = new Carnivore {
-//    override def eat(animal: Animal): Unit = println("I am a dinosaur so i can eat pretty much anything")
-//  }
+  val dinosaur = new Carnivore {
+    override def eat(animal: Animal): Unit = println("I am a dinosaur so i can eat pretty much anything")
+  }
 
   //singleton object
-  object MySingleton { // the only instance of the MySinglton type
+  object MySingleton { // the only instance of the MySingleton type
     val mySpecialValue = 53278
     def mySpecialMethod(): Int = 5327
     def apply(x:Int): Int = x + 1
@@ -75,7 +77,7 @@ object ObjectOrientation extends App {
   -pattern matching
 */
   case class Person(name: String, age:Int)
-
+// may be constructed without new
   val bob = Person("Bob", 54) // Person.apply("Bob",54)
 
   //exceptions
@@ -90,12 +92,27 @@ object ObjectOrientation extends App {
   }
 
   // generics
-  abstract class myList[T]{
+  abstract class MyList[T]{
     def head: T
-    def tail: MyLisr
+    def tail: MyList[T]
   }
+  //using a generic with a concrete type
+  val aList:List[Int] = List(1,2,3)
+  val first = aList.head // int
+  val rest = aList.tail
+  val aStringList = List("hello", "Scala")
+  val firstString = aStringList.head //string
 
+  //Point #1: in Scala we usually operate with Immutable values/obo an object must return Another object
+  //Any modification to an object must return Another object
+  /*
+  * Benefits:1) works miracles in multithreaded/distributed env
+  *           2) helps making sense of the code ("reasoning about")
+  *
+  * */
+  val reversedLst = aList.reverse//
 
+  //Point #2: Scala is closest to the 00 ideal
 }
 
 
